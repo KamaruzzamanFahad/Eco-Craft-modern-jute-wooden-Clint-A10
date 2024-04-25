@@ -14,23 +14,23 @@ const AuthProvider = ({ children }) => {
     const [looding,setlooding] = useState(true)
 
     const CreateUserByEmail = (email,password) => {
-        setlooding(true)
+        
         return createUserWithEmailAndPassword(auth,email,password)
     }
     const LoginByEmail = (email,password) => {
-        setlooding(true)
+        
        return signInWithEmailAndPassword(auth,email,password)
     }
     const LiginByGoogle = () =>{
-        setlooding(true)
+        
        return signInWithPopup(auth,GoogleProvider)
     }
     const LiginByGithub = () =>{
-        setlooding(true)
+        
        return signInWithPopup(auth,GithubProvider)
     }
     const LogOut = () =>{
-        setlooding(true)
+        
         signOut(auth)
     }
 
@@ -49,9 +49,11 @@ const AuthProvider = ({ children }) => {
         if(user){
             console.log(user)
             setuser(user)
+            setlooding(false)
         }
         else{
             console.log('user log out')
+            setlooding(false)
         }
     })
 
@@ -59,6 +61,7 @@ const AuthProvider = ({ children }) => {
         user,
         CreateUserByEmail,
         looding,
+        setlooding,
         LoginByEmail,
         LiginByGoogle,
         LiginByGithub,

@@ -11,8 +11,8 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
 
-    const { CreateUserByEmail} = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { CreateUserByEmail,setlooding} = useContext(AuthContext);
+    const goto = useNavigate();
 
 
     const reginhandle = (e) => {
@@ -27,6 +27,7 @@ const Register = () => {
                 .then(() => {
                     toast.success("Registration done, prifile updating please wait");
                     console.log('regi done ')
+                    goto('/');
 
                     // updateProfile(auth.currentUser, {
                     //     displayName: Name,

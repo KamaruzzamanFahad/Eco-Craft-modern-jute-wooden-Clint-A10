@@ -16,6 +16,7 @@ import AllArt from './Pages/AllArt.jsx';
 import AddCraft from './Pages/AddCraft.jsx';
 import MyArt from './Pages/MyArt.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
+import LogRegiProtect from './Pages/LogRegiProtect.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login></Login>
+        element: <LogRegiProtect><Login></Login></LogRegiProtect>
       },
       {
         path: '/register',

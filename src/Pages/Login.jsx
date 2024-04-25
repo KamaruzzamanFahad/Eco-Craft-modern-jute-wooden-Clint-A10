@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLocation, Navigate } from "react-router-dom";
+import { Link, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
@@ -9,13 +9,18 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Login = () => {
-    const { user,
-        login,
-        looding,
+    const goto = useNavigate();
+    const {
+        setlooding,
         LoginByEmail,
         LiginByGoogle,
         LiginByGithub, 
     } = useContext(AuthContext)
+
+    const loginsucces = () =>{
+        toast.success("LOGIN SUCCESSFUL");
+        goto('/');
+    }
 
     const loginhandle = (e) => {
         e.preventDefault();
@@ -23,7 +28,7 @@ const Login = () => {
         const password = e.target.password.value;
         LoginByEmail(email, password)
             .then(() => {
-                toast.success("LOGIN SUCCESSFUL")
+                loginsucces();
             })
             .catch(error => {
                 toast(error.message)
@@ -32,14 +37,14 @@ const Login = () => {
     const goglelogin = () => {
         LiginByGoogle()
             .then(() => {
-                toast.success("LOGIN SUCCESSFUL")
+                loginsucces();
             })
             .catch(error => toast.error(error.message))
 
     }
     const gitlogin = () => {
         LiginByGithub()
-            .then(() => toast.success("LOGIN SUCCESSFUL"))
+            .then(() => loginsucces())
             .catch(error => toast.error(error.message))
 
     }

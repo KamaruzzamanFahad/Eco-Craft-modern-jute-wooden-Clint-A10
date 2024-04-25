@@ -14,7 +14,7 @@ const Navber = () => {
 
     const {user,LogOut} = useContext(AuthContext)
     return (
-        <div className='px-[6%]'>
+        <div className='px-[5%]'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
