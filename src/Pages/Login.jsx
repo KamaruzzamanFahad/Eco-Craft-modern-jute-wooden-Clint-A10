@@ -3,6 +3,7 @@ import { Link, useLocation, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -44,7 +45,9 @@ const Login = () => {
     return (
 
         <div className="animate__backInDown">
-            
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             
             <div>
                 <div className="hero mb-10">

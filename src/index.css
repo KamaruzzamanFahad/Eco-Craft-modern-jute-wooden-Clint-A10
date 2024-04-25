@@ -17,13 +17,13 @@
 @tailwind components;
 @tailwind utilities;
 
-a{
+a li{
   padding: 10px;
   border-radius: 10px;
   color: 646cff;
   font-weight: bold;
 }
-a:hover{
+a li:hover{
   background-color: rgb(231, 231, 231);
 }
 
