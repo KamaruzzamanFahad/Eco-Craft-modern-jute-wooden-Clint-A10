@@ -7,10 +7,11 @@ import { Helmet } from "react-helmet-async";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { updateProfile } from 'firebase/auth';
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
 
-    const { registerempass, updateuserinfo, looding, user,auth } = true;
+    const { CreateUserByEmail} = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -22,23 +23,27 @@ const Register = () => {
         const password = e.target.password.value;
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/;
         if (regex.test(password)) {
-            registerempass(email, password)
+            CreateUserByEmail(email, password)
                 .then(() => {
                     toast.success("Registration done, prifile updating please wait");
                     console.log('regi done ')
-                    updateProfile(auth.currentUser, {
-                        displayName: Name,
-                        photoURL: photoURL,
-                    })
-                        .then(() => {
-                            toast.success("LOGIN SUCCESSFUL")
-                            console.log('log done ')
-                        })
-                        .catch((error) => {
-                            toast.success(error.massage)
-                        })
+
+                    // updateProfile(auth.currentUser, {
+                    //     displayName: Name,
+                    //     photoURL: photoURL,
+                    // })
+                    //     .then(() => {
+                    //         toast.success("LOGIN SUCCESSFUL")
+                    //         console.log('log done ')
+                    //     })
+                    //     .catch((error) => {
+                    //         toast.success(error.massage)
+                    //     })
                 })
-                .catch(error => toast.error(error.message))
+                .catch(error => {
+                    toast.error(error.message)
+                    console.log(error)
+                })
         } else {
             alert("passwords at least 8 characters long and contain a mix of uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*). Avoid using easily guessable information like your name, birthday, or common phrases!");
         }

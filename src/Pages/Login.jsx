@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 
@@ -11,14 +12,16 @@ const Login = () => {
     const { user,
         login,
         looding,
-        loginwithgoogle,
-        loginwithgithub } = true
+        LoginByEmail,
+        LiginByGoogle,
+        LiginByGithub, 
+    } = useContext(AuthContext)
 
     const loginhandle = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        login(email, password)
+        LoginByEmail(email, password)
             .then(() => {
                 toast.success("LOGIN SUCCESSFUL")
             })
@@ -27,7 +30,7 @@ const Login = () => {
             })
     }
     const goglelogin = () => {
-        loginwithgoogle()
+        LiginByGoogle()
             .then(() => {
                 toast.success("LOGIN SUCCESSFUL")
             })
@@ -35,7 +38,7 @@ const Login = () => {
 
     }
     const gitlogin = () => {
-        loginwithgithub()
+        LiginByGithub()
             .then(() => toast.success("LOGIN SUCCESSFUL"))
             .catch(error => toast.error(error.message))
 
@@ -48,7 +51,7 @@ const Login = () => {
             <Helmet>
                 <title>Login</title>
             </Helmet>
-            
+
             <div>
                 <div className="hero mb-10">
                     <div className="hero-content flex-col lg:flex-row-reverse">

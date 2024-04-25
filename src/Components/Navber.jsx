@@ -1,7 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Navber = () => {
     const links = <>
@@ -10,6 +11,8 @@ const Navber = () => {
         <NavLink activeclassname="active" to={'/add'}><li>Add Craft Item</li></NavLink>
         <NavLink activeclassname="active" to={'/myart'}><li>My Art&Craft List</li></NavLink>
     </>
+
+    const {user,LogOut} = useContext(AuthContext)
     return (
         <div className='px-[6%]'>
             <div className="navbar bg-base-100">
@@ -30,24 +33,25 @@ const Navber = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {
-                        true ? <>
+                {
+                    user ? <>
 
-                            <a
-                                data-tooltip-id="my-tooltip"
-                                data-tooltip-content={"name"}
-                                data-tooltip-place="left"
-                            >
-                                <img src="/vite.svg" width={'40px'} alt="" />
-                            </a>
-                            <a onClick={""} className="btn">Log Out</a>
-                        </>
-                            : <Link to={'/login'}><button className="btn">Log In</button></Link>
-                    }
-                    <Tooltip id="my-tooltip" />
+                        <a
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content={`${user.displayName}`}
+                            data-tooltip-place="left"
+                        >
+                            <img src={user.photoURL} width={'40px'} alt="" />
+                        </a>
+                        <a onClick={LogOut} className="btn ml-2">Log Out</a>
+                    </>
+                        : <Link to={'/login'}><button className="btn">Log In</button></Link>
+                        
+                }
+                <Tooltip id="my-tooltip" />
 
 
-                </div>
+            </div>
             </div>
         </div>
     );
