@@ -12,9 +12,9 @@ const Navber = () => {
         <NavLink activeclassname="active" to={'/myart'}><li>My Art&Craft List</li></NavLink>
     </>
 
-    const {user,LogOut} = useContext(AuthContext)
+    const { user, LogOut } = useContext(AuthContext)
     return (
-        <div className='px-[5%]'>
+        <div className='py-5'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -33,25 +33,28 @@ const Navber = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                {
-                    user ? <>
+                    {
+                        user ? <>
 
-                        <a
-                            data-tooltip-id="my-tooltip"
-                            data-tooltip-content={`${user.displayName}`}
-                            data-tooltip-place="left"
-                        >
-                            <img src={user.photoURL} width={'40px'} alt="" />
-                        </a>
-                        <a onClick={LogOut} className="btn ml-2">Log Out</a>
-                    </>
-                        : <Link to={'/login'}><button className="btn">Log In</button></Link>
-                        
-                }
-                <Tooltip id="my-tooltip" />
+                            <a
+                                data-tooltip-id="my-tooltip"
+                                data-tooltip-content={`${user.displayName}`}
+                                data-tooltip-place="left"
+                            >
+                                <img src={user.photoURL} width={'40px'} alt="" />
+                            </a>
+                            <a onClick={LogOut} className="btn ml-2">Log Out</a>
+                        </>
+                            : <div>
+                                <Link to={'/login'}><button className="btn">Log In</button></Link> <Link to={'/register'}><button className="btn ml-2">Register</button></Link>
+                            </div>
 
 
-            </div>
+                    }
+                    <Tooltip id="my-tooltip" />
+
+
+                </div>
             </div>
         </div>
     );

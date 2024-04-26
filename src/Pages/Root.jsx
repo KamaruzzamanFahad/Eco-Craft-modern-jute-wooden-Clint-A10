@@ -7,8 +7,8 @@ const Root = () => {
     return (
         <div>
             <ToastContainer></ToastContainer>
-            <Navber></Navber>
-            <div className='px-[7%]'>
+            <div className='px-[6%]'>
+                <Navber></Navber>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

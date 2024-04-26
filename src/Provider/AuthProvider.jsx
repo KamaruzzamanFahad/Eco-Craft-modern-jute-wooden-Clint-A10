@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useState } from 'react'
 import app from '../Pages/Config';
 
@@ -29,6 +29,12 @@ const AuthProvider = ({ children }) => {
         
        return signInWithPopup(auth,GithubProvider)
     }
+    const UpdateInfo = (name,photo) =>{
+       return updateProfile(auth.currentUser,{
+            displayName:name,
+            photoURL:photo,
+        })
+    }
     const LogOut = () =>{
         
         signOut(auth)
@@ -54,6 +60,7 @@ const AuthProvider = ({ children }) => {
         else{
             console.log('user log out')
             setlooding(false)
+            setuser(null)
         }
     })
 
@@ -66,6 +73,7 @@ const AuthProvider = ({ children }) => {
         LiginByGoogle,
         LiginByGithub,
         LogOut,
+        UpdateInfo,
     }
     return (
         <AuthContext.Provider value={info}>

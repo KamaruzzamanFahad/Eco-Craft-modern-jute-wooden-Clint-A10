@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/register',
-        element: <Register></Register>
+        element:<LogRegiProtect><Register></Register></LogRegiProtect>
       },
       {
         path: '/all',
