@@ -17,6 +17,7 @@ import AddCraft from './Pages/AddCraft.jsx';
 import MyArt from './Pages/MyArt.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
 import LogRegiProtect from './Pages/LogRegiProtect.jsx';
+import ProtectedRout from './Pages/ProtectedRout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,11 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/add',
-        element: <AddCraft></AddCraft>
+        element: <ProtectedRout><AddCraft></AddCraft></ProtectedRout>
       },
       {
         path: '/myart',
-        element: <MyArt></MyArt>
+        element: <ProtectedRout><MyArt></MyArt></ProtectedRout>
       },
     ]
   }
