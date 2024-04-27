@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 
 const AllArt = () => {
 
-    const [craft, setcraft] = useState([])
+    const [craft, setcraft] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/craft')
             .then(res => res.json())
             .then(data => {
-                setcraft(data)
+                setcraft(data);
             })
     }, [])
 

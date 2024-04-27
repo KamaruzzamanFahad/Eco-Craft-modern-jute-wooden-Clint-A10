@@ -8,7 +8,7 @@ const MyArt = () => {
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/craft/${user.email}`)
+        fetch(`http://localhost:5000/product/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setdata(data)

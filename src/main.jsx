@@ -19,6 +19,7 @@ import MyArt from './Pages/MyArt.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
 import LogRegiProtect from './Pages/LogRegiProtect.jsx';
 import ProtectedRout from './Pages/ProtectedRout.jsx';
+import ViewDetils from './Pages/ViewDetils.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
         path: '/myart',
         element: <ProtectedRout><MyArt></MyArt></ProtectedRout>
       },
+      {
+        path:'/detils/:id',
+        element:<ViewDetils></ViewDetils>,
+        loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
+      }
     ]
   }
 ])
