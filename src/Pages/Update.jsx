@@ -33,29 +33,28 @@ const Update = () => {
         const stockStatus = form.stockStatus.value;
         const username = user.displayName;
         const email = user.email;
-        const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus,username,email}
+        const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus}
         console.log(item)
 
-        fetch('http://localhost:5000/craft', {
-            method: 'POST',
-            headers: {
+        fetch(`http://localhost:5000/craft/${_id}`,{
+            method: 'PUT',
+            headers:{
                 'content-type': 'application/json',
             },
-            body:JSON.stringify(item),
+            body:JSON.stringify(item)
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.insertedId) {
-                    form.reset();
-                    Swal.fire({
-                        title: 'Success !',
-                        text: 'Item Added Successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount > 0 ){
+                Swal.fire({
+                    title: 'Success !',
+                    text: 'Item Updated Successfully ',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
+            }
+        })
 
     }
     return (
