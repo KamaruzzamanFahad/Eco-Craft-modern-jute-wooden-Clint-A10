@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const MyArt = () => {
-    const [data, setdata] = useState([])
+    const [data, setdata] = useState([]);
 
     const {user} = useContext(AuthContext);
 
