@@ -4,6 +4,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import Rating from 'react-rating';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [craft, setcraft] = useState([])
@@ -98,7 +99,8 @@ const Home = () => {
                                     <p>Customizable: {item.customizable}</p>
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>
-                                <button className='w-full bg-blue-500 text-white'>View Details</button>
+                                <Link to={`/detils/${item._id}`}>
+                                <button className='w-full bg-blue-500 text-white'>View Details</button></Link>
                             </div>
                         ))
                     }
