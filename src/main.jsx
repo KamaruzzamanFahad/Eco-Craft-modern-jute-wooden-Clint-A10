@@ -20,6 +20,7 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import LogRegiProtect from './Pages/LogRegiProtect.jsx';
 import ProtectedRout from './Pages/ProtectedRout.jsx';
 import ViewDetils from './Pages/ViewDetils.jsx';
+import Update from './Pages/Update.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,12 @@ const router = createBrowserRouter([
       },
       {
         path:'/detils/:id',
-        element:<ViewDetils></ViewDetils>,
+        element:<ProtectedRout><ViewDetils></ViewDetils></ProtectedRout>,
+        loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
+      },
+      {
+        path:'/update/:id',
+        element:<ProtectedRout><Update></Update></ProtectedRout>,
         loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
       }
     ]

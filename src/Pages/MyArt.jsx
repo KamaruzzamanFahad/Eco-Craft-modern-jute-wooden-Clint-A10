@@ -2,6 +2,7 @@ import Rating from 'react-rating';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom';
 const MyArt = () => {
     const [data, setdata] = useState([]);
     
@@ -32,19 +33,22 @@ const MyArt = () => {
                     method: "DELETE"
                 })
                     .then(res => res.json())
-                    .then(data => {
-                        if (deletedCount > 0) {
+                    .then(datarespons => {
+                        if (datarespons.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
 
-                            const rest = data.filter(item => item._id != id)
-                            setdata(rest)
+                            
 
                         }
+                        const rest = data.filter(item => item._id != id)
+                        console.log(rest)
+                            setdata(rest)
                     })
+
             }
         });
     }
@@ -83,8 +87,9 @@ const MyArt = () => {
                                     <p>Customizable: {item.customizable}</p>
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>
-                                <button className='w-full bg-blue-500 text-white'>Update</button>
-                                <button onClick={() => deletehandle(item._id)} className='w-full bg-red-400 text-white mt-2'>Delete</button>
+                                <Link to={`/update/${item._id}`}>
+                                <button className='w-full bg-blue-500 text-white'>Update</button></Link>
+                                <button type='button' onClick={() => deletehandle(item._id)} className='w-full bg-red-400 text-white mt-2'>Delete</button>
                             </div>
                         ))
                     }
