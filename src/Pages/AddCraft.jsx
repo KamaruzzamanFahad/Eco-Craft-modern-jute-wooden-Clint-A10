@@ -19,29 +19,29 @@ const AddCraft = () => {
         const stockStatus = form.stockStatus.value;
         const username = user.displayName;
         const email = user.email;
-        const newcoffee = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus,username,email}
-        console.log(newcoffee)
+        const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus,username,email}
+        console.log(item)
 
-        // fetch('http://localhost:5000/coffee', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(newcoffee)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         if (data.insertedId) {
-        //             // form.reset();
-        //             Swal.fire({
-        //                 title: 'Success !',
-        //                 text: 'Coffee Added Successfully ',
-        //                 icon: 'success',
-        //                 confirmButtonText: 'Ok'
-        //             })
-        //         }
-        //     })
+        fetch('http://localhost:5000/craft', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body:JSON.stringify(item),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId) {
+                    form.reset();
+                    Swal.fire({
+                        title: 'Success !',
+                        text: 'Item Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
 
     }
 
@@ -53,7 +53,7 @@ const AddCraft = () => {
                 <form onSubmit={handlesubmit} action="" className='grid grid-cols-1 md:grid-cols-2 gap-5 mt-5'>
                     <div>
                         <h2 className='mb-2 font-semibold'>Item_Name</h2>
-                        <input required className='w-full p-2 outline-none' type="text" placeholder='Enter coffee name' name='name' />
+                        <input required className='w-full p-2 outline-none' type="text" placeholder='Enter item name' name='name' />
                     </div>
                     <div>
                         <h2 className='mb-2 font-semibold'>Subcategory Name</h2>

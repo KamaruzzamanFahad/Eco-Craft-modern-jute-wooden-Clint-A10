@@ -11,6 +11,7 @@ import Root from './Pages/Root.jsx';
 import Home from './Pages/Home.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
+import Error from './Pages/Error.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import AllArt from './Pages/AllArt.jsx';
 import AddCraft from './Pages/AddCraft.jsx';
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: '/',
