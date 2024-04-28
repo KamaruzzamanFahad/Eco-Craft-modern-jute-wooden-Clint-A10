@@ -1,8 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { AuthContext } from '../Provider/AuthProvider';
+
+
+
 
 const Navber = () => {
     const links = <>
@@ -11,6 +14,20 @@ const Navber = () => {
         <NavLink activeclassname="active" to={'/add'}><li>Add Art & Craft Item</li></NavLink>
         <NavLink activeclassname="active" to={'/myart'}><li>My Art & Craft List</li></NavLink>
     </>
+
+    const [ischack,setcheck] = useState(true)
+
+
+    const darklighandle = (e)=>{
+        if(ischack){
+            setcheck(false)
+
+        }
+        else{
+            setcheck(true)
+        }
+        console.log(ischack)
+    }
 
     const { user, LogOut } = useContext(AuthContext)
     return (
@@ -33,17 +50,24 @@ const Navber = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+
+                    <div className="form-control mr-2">
+                        <label className="label cursor-pointer">
+                            <input onChange={darklighandle} type="checkbox" className="toggle" />
+                        </label>
+                    </div>
                     {
                         user ? <>
 
-                            <a
-                                data-tooltip-id="my-tooltip"
-                                data-tooltip-content={`${user.displayName}`}
-                                data-tooltip-place="left"
-                            >
+                            <a data-tooltip-id="my-tooltip">
                                 <img src={user.photoURL} width={'40px'} alt="" />
                             </a>
-                            <a onClick={LogOut} className="btn ml-2">Log Out</a>
+                            <Tooltip className="z-[10]" id="my-tooltip">
+                                <div className='rounded-xl'>
+                                    <p>{user.displayName}</p>
+                                    <p className='mt-2' onClick={LogOut}>Logout</p>
+                                </div>
+                            </Tooltip>
                         </>
                             : <div>
                                 <Link to={'/login'}><button className="btn">Log In</button></Link> <Link to={'/register'}><button className="btn ml-2">Register</button></Link>
@@ -51,6 +75,8 @@ const Navber = () => {
 
 
                     }
+
+
                     <Tooltip id="my-tooltip" />
 
 

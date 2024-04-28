@@ -2,59 +2,11 @@ import Rating from 'react-rating';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2'
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const SubCatagory = () => {
-    const [data, setdata] = useState([]);
-    
-    const { user } = useContext(AuthContext);
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/allsub/${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setdata(data)
-            })
-    }, [])
-
-
-
-    const deletehandle = (id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete/${id}`, {
-                    method: "DELETE"
-                })
-                    .then(res => res.json())
-                    .then(datarespons => {
-                        if (datarespons.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-
-                            
-
-                        }
-                        const rest = data.filter(item => item._id != id)
-                        console.log(rest)
-                            setdata(rest)
-                    })
-
-            }
-        });
-    }
-
-
+    const data = useLoaderData();
+    console.log(data)
 
     return (
         <div>
@@ -70,6 +22,7 @@ const SubCatagory = () => {
                                 <div>
                                     <img src={item.photo} width={'100%'} alt="" className="rounded-xl h-[200px]" />
                                 </div>
+                                <a className='text-sm'>{item.subcategory_Name}</a>
                                 <a className='text-sm'>{item.stockStatus}</a>
                                 <p className='text-blue-500 font-semibold text-lg py-1'>{item.name}</p>
                                 <div className='flex items-center gap-2'>
@@ -85,12 +38,11 @@ const SubCatagory = () => {
 
                                 <div>
                                     <p>Processing time: {item.processing_time}</p>
-                                    <p>Customizable: {item.customizable}</p>
+                                    <p>{item.detils}</p>
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>
-                                <Link to={`/update/${item._id}`}>
-                                <button className='w-full bg-blue-500 text-white'>Update</button></Link>
-                                <button type='button' onClick={() => deletehandle(item._id)} className='w-full bg-red-400 text-white mt-2'>Delete</button>
+                                <Link to={`/detils/${item._id}`}>
+                                    <button className='w-full bg-blue-500 text-white'>View Details</button></Link>
                             </div>
                         ))
                     }

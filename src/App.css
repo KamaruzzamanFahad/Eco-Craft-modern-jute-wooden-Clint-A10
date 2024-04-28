@@ -1,9 +1,16 @@
-#root {
+#root {}
+
+.light {
+  color: rgb(30, 30, 30);
+  background-color: white;
 }
 
+.dark {
+  color: rgb(226, 226, 226);
+  background-color: rgb(30, 30, 30);
+}
 
-.active li{
-    background-color: rgba(178, 178, 178, 0.646);
-    
-  }
+.active li {
+  background-color: rgba(178, 178, 178, 0.646);
 
+}

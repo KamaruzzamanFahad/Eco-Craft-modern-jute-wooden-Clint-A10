@@ -4,7 +4,8 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import Rating from 'react-rating';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';;
+
 
 const Home = () => {
     const [craft, setcraft] = useState([])
@@ -27,9 +28,11 @@ const Home = () => {
             })
     }, [])
 
+    
+
 
     return (
-        <div>
+        <div className={`${""}`}>
             <Swiper
                 navigation={true}
                 modules={[Navigation]}
@@ -119,7 +122,7 @@ const Home = () => {
                         subcatagory.map((item, i) => (
 
 
-                            <Link >
+                            <Link key={i} to={`/allsub/${item.sub_catagoryname}`}>
                                 <div className=' flex gap-2 items-center bg-[#ebebeb] rounded-lg p-5 py-2'>
                                     <img src={item.image} alt="" className='w-10 rounded-lg' />
                                     <h2>{item.sub_catagoryname}</h2>

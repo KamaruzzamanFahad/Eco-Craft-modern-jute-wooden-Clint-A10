@@ -1,8 +1,16 @@
-# React + Vite
+****Eco-Craft: Jute & Wooden Crafts (Art & Craft Store)**
+**Live Site: https://modern-jute-wooden.web.app/**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Eco-Craft, your one-stop shop for beautiful and sustainable jute and wooden crafts! We are passionate about promoting eco-friendly art forms while offering unique and handcrafted pieces for your home or as gifts.
 
-Currently, two official plugins are available:
+***Here's what makes Eco-Craft special:***
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Unique Jute Creations:** Explore our collection of one-of-a-kind jute crafts, crafted with precision and care by skilled artisans.
+
+**Artisanal Wooden Wonders:** Immerse yourself in the warmth and charm of our wooden crafts, each telling a story of craftsmanship and tradition.
+
+**Sustainability at Heart:** We are committed to eco-conscious practices, sourcing materials responsibly and minimizing environmental impact.
+
+**Customization Options:** Personalize your order to suit your taste and preferences, creating bespoke pieces that reflect your style.
+
+**Inspiration Galore:** Dive into our blog section for DIY tutorials, eco-living tips, and inspiring stories behind our crafters and their creations.

@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
       },
       {
-        path:'/allsub',
+        path:'/allsub/:id',
         element:<ProtectedRout><SubCatagory></SubCatagory></ProtectedRout>,
         loader: ({params}) => fetch(`http://localhost:5000/allsub/${params.id}`)
       }
