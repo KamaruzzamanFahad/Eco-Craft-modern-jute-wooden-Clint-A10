@@ -57,7 +57,15 @@ const AddCraft = () => {
                     </div>
                     <div>
                         <h2 className='mb-2 font-semibold'>Subcategory Name</h2>
-                        <input required className='w-full p-2 outline-none' type="text" placeholder='Enter subcategory_Name' name='subcategory_Name' />
+                        <select required name='subcategory_Name' className="select w-full p-2 outline-none">
+                            <option disabled selected>Select subcategory</option>
+                            <option>Wooden Furniture & Sculptures</option>
+                            <option>Wooden Home Decor</option>
+                            <option>Wooden Utensils and Kitchenware</option>
+                            <option>Jute Home Decor</option>
+                            <option>Jute Kitchenware & utensils</option>
+                            <option>Jute and wooden jewellery</option>
+                        </select>
                     </div>
                     <div>
                         <h2 className='mb-2 font-semibold'>price</h2>

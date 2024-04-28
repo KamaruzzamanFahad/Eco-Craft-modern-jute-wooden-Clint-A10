@@ -21,6 +21,7 @@ import LogRegiProtect from './Pages/LogRegiProtect.jsx';
 import ProtectedRout from './Pages/ProtectedRout.jsx';
 import ViewDetils from './Pages/ViewDetils.jsx';
 import Update from './Pages/Update.jsx';
+import SubCatagory from './Pages/SubCatagoryData.jsx';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
         path:'/update/:id',
         element:<ProtectedRout><Update></Update></ProtectedRout>,
         loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
+      },
+      {
+        path:'/allsub',
+        element:<ProtectedRout><SubCatagory></SubCatagory></ProtectedRout>,
+        loader: ({params}) => fetch(`http://localhost:5000/allsub/${params.id}`)
       }
     ]
   }

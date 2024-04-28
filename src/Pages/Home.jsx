@@ -100,7 +100,7 @@ const Home = () => {
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>
                                 <Link to={`/detils/${item._id}`}>
-                                <button className='w-full bg-blue-500 text-white'>View Details</button></Link>
+                                    <button className='w-full bg-blue-500 text-white'>View Details</button></Link>
                             </div>
                         ))
                     }
@@ -119,10 +119,12 @@ const Home = () => {
                         subcatagory.map((item, i) => (
 
 
-                            <div className='flex gap-2 items-center bg-[#ebebeb] rounded-lg p-5 py-2'>
-                                <img src={item.image} alt="" className='w-10 rounded-lg' />
-                                <h2>{item.sub_catagoryname}</h2>
-                            </div>
+                            <Link >
+                                <div className=' flex gap-2 items-center bg-[#ebebeb] rounded-lg p-5 py-2'>
+                                    <img src={item.image} alt="" className='w-10 rounded-lg' />
+                                    <h2>{item.sub_catagoryname}</h2>
+                                </div>
+                            </Link>
                         ))
                     }
                 </div>
@@ -167,22 +169,22 @@ const Home = () => {
                 <div className='grid grid-cols-1 gap-8  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
                     <div className='bg-[#ededed] p-3 rounded-xl'>
                         <img src="/Whimsical Wonders.jpg" alt="" className='w-full rounded-xl' />
-                        <h2 className='text-center font-semibold text-xl'>Whimsical Wonders</h2> 
+                        <h2 className='text-center font-semibold text-xl'>Whimsical Wonders</h2>
                     </div>
 
                     <div className='bg-[#ededed] p-3 rounded-xl'>
                         <img src="/Wooden Picture Frames with Jute Accents.jpg" alt="" className='w-full rounded-xl' />
-                        <h2 className='text-center font-semibold text-xl'>Wooden Picture Frames with Jute Accents</h2> 
+                        <h2 className='text-center font-semibold text-xl'>Wooden Picture Frames with Jute Accents</h2>
                     </div>
 
                     <div className='bg-[#ededed] p-3 rounded-xl'>
                         <img src="/Jute and Wood Plant Hangers.jpg" alt="" className='w-full rounded-xl' />
-                        <h2 className='text-center font-semibold text-xl'>Jute and Wood Plant Hangers</h2> 
+                        <h2 className='text-center font-semibold text-xl'>Jute and Wood Plant Hangers</h2>
                     </div>
 
                     <div className='bg-[#ededed] p-3 rounded-xl'>
                         <img src="/ute and Wood Storage Baskets.jpg" alt="" className='w-full rounded-xl' />
-                        <h2 className='text-center font-semibold text-xl'>Jute and Wood Storage Baskets</h2> 
+                        <h2 className='text-center font-semibold text-xl'>Jute and Wood Storage Baskets</h2>
                     </div>
                 </div>
             </div>
