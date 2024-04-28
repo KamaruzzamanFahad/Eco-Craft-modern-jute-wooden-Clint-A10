@@ -25,7 +25,37 @@ const AllArt = () => {
                     <p className='px-[10%] text-center mb-10'>Welcome to our All Art & craft Items section, your one-stop shop for all things handmade magic! Whether you're a seasoned crafter or just starting your creative journey, we have something to inspire you.</p>
                 </div>
 
-                <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                <div className="overflow-x-auto mb-20">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th className='font-bold text-black text-md'>Name</th>
+                                <th className='font-bold text-black text-md hidden sm:flex '>Subcategory</th>
+                                <th className='font-bold text-black text-md'>Price</th>
+                                <th className='font-bold text-black text-md'>Rating</th>
+                                <th className='font-bold text-black text-md'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                craft.map((item, i) => (
+                                    <tr>
+                                        <th>{i+1}</th>
+                                        <td>{item.name}</td>
+                                        <td className=' hidden sm:flex'>{item.subcategory_Name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.rating}</td>
+                                        <td><Link to={`/detils/${item._id}`} className='text-[#5395ff]'>View Details</Link></td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 hidden'>
                     {
                         craft.map((item, i) => (
                             <div key={i} className='bg-[#eeeeee] flex flex-col h-auto p-4 pb-6 rounded-lg animate__bounceIn'>
@@ -51,11 +81,11 @@ const AllArt = () => {
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>
                                 <Link to={`/detils/${item._id}`}>
-                                <button className='w-full bg-blue-500 text-white'>View Details</button>
+                                    <button className='w-full bg-blue-500 text-white'>View Details</button>
                                 </Link>
 
-                                
-                                
+
+
                             </div>
                         ))
                     }
