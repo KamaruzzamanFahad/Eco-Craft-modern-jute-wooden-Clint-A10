@@ -7,6 +7,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 
 
+
 const Navber = () => {
     const links = <>
         <NavLink activeclassname="active" to={'/'}><li>Home</li></NavLink>
@@ -15,15 +16,15 @@ const Navber = () => {
         <NavLink activeclassname="active" to={'/myart'}><li>My Art & Craft List</li></NavLink>
     </>
 
-    const [ischack,setcheck] = useState(true)
+    const [ischack, setcheck] = useState(true)
 
 
-    const darklighandle = (e)=>{
-        if(ischack){
+    const darklighandle = (e) => {
+        if (ischack) {
             setcheck(false)
 
         }
-        else{
+        else {
             setcheck(true)
         }
         console.log(ischack)
@@ -58,16 +59,17 @@ const Navber = () => {
                     </div>
                     {
                         user ? <>
-
-                            <a data-tooltip-id="my-tooltip">
-                                <img src={user.photoURL} width={'40px'} alt="" />
-                            </a>
-                            <Tooltip className="z-[10]" id="my-tooltip">
-                                <div className='rounded-xl'>
-                                    <p>{user.displayName}</p>
-                                    <p className='mt-2' onClick={LogOut}>Logout</p>
+                            <div className="dropdown dropdown-end dropdown-hover z-[10]">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar z-[10]">
+                                <div className="w-10 rounded-full">
+                                    <img alt="user" src={user.photoURL} />
                                 </div>
-                            </Tooltip>
+                                </div>
+                                <ul tabIndex={0} className="mt-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#ececec] rounded-box w-52">
+                                    <li><a>{user.displayName}</a></li>
+                                    <li><a onClick={LogOut}>Logout</a></li>
+                                </ul>
+                            </div>
                         </>
                             : <div>
                                 <Link to={'/login'}><button className="btn">Log In</button></Link> <Link to={'/register'}><button className="btn ml-2">Register</button></Link>
@@ -81,7 +83,10 @@ const Navber = () => {
 
 
                 </div>
+
+
             </div>
+
         </div>
     );
 };

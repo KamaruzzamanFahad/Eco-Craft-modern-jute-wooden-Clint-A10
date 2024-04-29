@@ -16,6 +16,7 @@ const MyArt = () => {
             })
     }, [])
 
+    const [filter, setfilter] = useState(data);
 
 
     const deletehandle = (id) => {
@@ -60,6 +61,15 @@ const MyArt = () => {
             <div className='mt-14'>
                 <div>
                     <h1 className='text-center mb-5'>My Art & Craft List</h1>
+
+                    <div className='flex items-center justify-center mt-3 mb-4'>
+                        <p className='bg-[#eeeeee] p-4 rounded-lg'>Filter By Customization</p>
+                        <select  required name='subcategory_Name' className="select p-2 outline-none">
+                            <option disabled selected>Chose An Option </option>
+                            <option>Customizable Yes</option>
+                            <option>Customizable No</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
