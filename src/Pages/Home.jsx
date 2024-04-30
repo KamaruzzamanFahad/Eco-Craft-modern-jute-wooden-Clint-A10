@@ -5,7 +5,9 @@ import { Navigation } from 'swiper/modules';
 import Rating from 'react-rating';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';;
-
+import { Helmet } from "react-helmet-async";
+import { Typewriter } from 'react-simple-typewriter'
+import 'animate.css';
 
 const Home = () => {
     const [craft, setcraft] = useState([])
@@ -14,23 +16,23 @@ const Home = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/craft')
+        fetch('https://server-jute-wooden.vercel.app/craft')
             .then(res => res.json())
             .then(data => {
-                const slicedData = data.slice(0, 7);
+                const slicedData = data.slice(0, 6);
                 setcraft(slicedData)
             })
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/subcatagory')
+        fetch('https://server-jute-wooden.vercel.app/subcatagory')
             .then(res => res.json())
             .then(data => {
                 setsubcatagory(data)
             })
     }, [])
 
-    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    const [theme, settheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : "light")
     window.addEventListener('click', function (event) {
         if (event.target.classList[0] == "toggle") {
             const theme = localStorage.getItem('theme')
@@ -47,11 +49,18 @@ const Home = () => {
         'background-color': (theme == "light") ? 'white' : '#ffffff22',
     };
 
+    const handleDone = () => {
+        console.log(`Done after 5 loops!`)
+    }
+
 
 
 
     return (
         <div className={`${theme}`}>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <Swiper
                 navigation={true}
                 modules={[Navigation]}
@@ -75,7 +84,7 @@ const Home = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div  id="slide2" className="carousel-item relative h-[35vw] w-full">
+                    <div id="slide2" className="carousel-item relative h-[35vw] w-full">
                         <img src="slid2.jpg" className="w-full" />
 
                         <div className='absolute top-[10%] sm:top-[20%] md:top-[30%] text-center w-full'>
@@ -98,14 +107,31 @@ const Home = () => {
 
             <div className={`mt-14 ${theme}`}>
                 <div>
-                    <h1 className='text-center mb-2'>Craft Items </h1>
+                   <div className='flex items-center justify-center mb-4'>
+                   <h1 className='text-center'>
+                   Craft{' '}
+                        <span style={{ color: 'red', fontWeight: 'bold' }}>
+                            {/* Style will be inherited from the parent element */}
+                            <Typewriter
+                                words={['Items', 'Items Section']}
+                                loop={true}
+                                cursor
+                                cursorStyle='_'
+                                typeSpeed={70}
+                                deleteSpeed={50}
+                                delaySpeed={1000}
+
+                            />
+                        </span>
+                    </h1>
+                   </div>
                     <p className='px-[10%] text-center mb-10'>Welcome to our Craft Items section, your one-stop shop for all things handmade magic! Whether you're a seasoned crafter or just starting your creative journey, we have something to inspire you.</p>
                 </div>
 
                 <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
                     {
                         craft.map((item, i) => (
-                            <div style={cardstyles} key={i} className={`bg-[#eeeeee] flex flex-col h-auto p-4 pb-6 rounded-lg animate__bounceIn ${""}`}>
+                            <div style={cardstyles} key={i} className={`bg-[#eeeeee] flex flex-col h-auto p-4 pb-6 animate__backOutUp rounded-lg animate__bounceIn ${""}`}>
                                 <div>
                                     <img src={item.photo} width={'100%'} alt="" className="rounded-xl h-[200px]" />
                                 </div>
@@ -148,7 +174,7 @@ const Home = () => {
 
 
                             <Link key={i} to={`/allsub/${item.sub_catagoryname}`}>
-                                <div style={cardstyles} className=' flex gap-2 items-center bg-[#ebebeb] rounded-lg p-5 py-2'>
+                                <div style={cardstyles} className=' animate__fadeInBottomRight flex gap-2 items-center bg-[#ebebeb] rounded-lg p-5 py-2'>
                                     <img src={item.image} alt="" className='w-10 rounded-lg' />
                                     <h2>{item.sub_catagoryname}</h2>
                                 </div>

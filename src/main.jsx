@@ -55,17 +55,17 @@ const router = createBrowserRouter([
       {
         path:'/detils/:id',
         element:<ProtectedRout><ViewDetils></ViewDetils></ProtectedRout>,
-        loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
+        loader: ({params}) => fetch(`https://server-jute-wooden.vercel.app/craft/${params.id}`)
       },
       {
         path:'/update/:id',
         element:<ProtectedRout><Update></Update></ProtectedRout>,
-        loader: ({params}) => fetch(`http://localhost:5000/craft/${params.id}`)
+        loader: ({params}) => fetch(`https://server-jute-wooden.vercel.app/craft/${params.id}`)
       },
       {
         path:'/allsub/:id',
         element:<ProtectedRout><SubCatagory></SubCatagory></ProtectedRout>,
-        loader: ({params}) => fetch(`http://localhost:5000/allsub/${params.id}`)
+        loader: ({params}) => fetch(`https://server-jute-wooden.vercel.app/allsub/${params.id}`)
       }
     ]
   }

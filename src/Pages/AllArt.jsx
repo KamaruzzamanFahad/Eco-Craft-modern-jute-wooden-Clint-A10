@@ -2,14 +2,14 @@
 import Rating from 'react-rating';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Helmet } from "react-helmet-async";
 
 const AllArt = () => {
 
     const [craft, setcraft] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/craft')
+        fetch('https://server-jute-wooden.vercel.app/craft')
             .then(res => res.json())
             .then(data => {
                 setcraft(data);
@@ -31,6 +31,9 @@ const AllArt = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>All Craft & Art</title>
+            </Helmet>
             <div className='mt-14'>
                 <div>
                     <h1 className='text-center mb-2'>All Art & craft Items</h1>

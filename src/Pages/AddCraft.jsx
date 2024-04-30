@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../Provider/AuthProvider';
+import { Helmet } from "react-helmet-async";
 
 const AddCraft = () => {
 
-    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    const [theme, settheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : "light")
     window.addEventListener('click', function (event) {
         if (event.target.classList[0] == "toggle") {
             const theme = localStorage.getItem('theme')
@@ -25,11 +26,11 @@ const AddCraft = () => {
         color: (theme == "light") ? 'black' : 'white',
         'background-color': (theme == "light") ? 'white' : 'black',
     };
-    
 
 
 
-    const {user} = useContext(AuthContext)
+
+    const { user } = useContext(AuthContext)
     const handlesubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -44,15 +45,15 @@ const AddCraft = () => {
         const stockStatus = form.stockStatus.value;
         const username = user.displayName;
         const email = user.email;
-        const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus,username,email}
+        const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable, stockStatus, username, email }
         console.log(item)
 
-        fetch('http://localhost:5000/craft', {
+        fetch('https://server-jute-wooden.vercel.app/craft', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body:JSON.stringify(item),
+            body: JSON.stringify(item),
         })
             .then(res => res.json())
             .then(data => {
@@ -63,17 +64,20 @@ const AddCraft = () => {
                         title: 'Success !',
                         text: 'Item Added Successfully',
                         icon: 'success',
-                        confirmButtonText:'Ok'
+                        confirmButtonText: 'Ok'
                     })
                 }
             })
 
     }
 
-    
+
 
     return (
         <div className='px-[10%]'>
+            <Helmet>
+                <title>Add Craft & Art</title>
+            </Helmet>
             <div style={cardstyles} className=' p-12 px-5 md:px-20'>
                 <h1 className='text-center text-[#374151] sadobl'>Add New Craft Item </h1>
 

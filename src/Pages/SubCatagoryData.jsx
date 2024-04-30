@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2'
 import { Link, useLoaderData, useParams } from 'react-router-dom';
-
+import { Helmet } from "react-helmet-async";
 const SubCatagory = () => {
     const data = useLoaderData();
     console.log(data)
@@ -28,6 +28,9 @@ const SubCatagory = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{catagoryname.id}</title>
+            </Helmet>
             <div className='mt-14'>
                 <div>
                     <h1 className='text-center mb-5'>{catagoryname.id}</h1>
@@ -41,7 +44,7 @@ const SubCatagory = () => {
                                     <img src={item.photo} width={'100%'} alt="" className="rounded-xl h-[200px]" />
                                 </div>
                                 <a className='text-sm'>{item.subcategory_Name}</a>
-                                <a className='text-sm'>{item.stockStatus}</a>
+                                
                                 <p className='text-blue-500 font-semibold text-lg py-1'>{item.name}</p>
                                 <div className='flex items-center gap-2'>
                                     <Rating
@@ -55,7 +58,7 @@ const SubCatagory = () => {
                                 </div>
 
                                 <div>
-                                    <p>Processing time: {item.processing_time}</p>
+                                    <p className='mb-2'>Processing time: {item.processing_time}</p>
                                     <p>{item.detils}</p>
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>

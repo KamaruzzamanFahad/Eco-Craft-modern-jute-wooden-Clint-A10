@@ -74,6 +74,7 @@ const AuthProvider = ({ children }) => {
         LiginByGithub,
         LogOut,
         UpdateInfo,
+        setuser,
     }
     return (
         <AuthContext.Provider value={info}>

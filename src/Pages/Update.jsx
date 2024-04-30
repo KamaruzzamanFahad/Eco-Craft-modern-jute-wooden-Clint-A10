@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../Provider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
-
+import { Helmet } from "react-helmet-async";
 const Update = () => {
     const {user} = useContext(AuthContext)
     const data = useLoaderData();
@@ -36,7 +36,7 @@ const Update = () => {
         const item = { name, subcategory_Name, price, rating, processing_time, detils, photo, customizable,stockStatus}
         console.log(item)
 
-        fetch(`http://localhost:5000/craft/${_id}`,{
+        fetch(`https://server-jute-wooden.vercel.app/craft/${_id}`,{
             method: 'PUT',
             headers:{
                 'content-type': 'application/json',
@@ -84,6 +84,9 @@ const Update = () => {
 
     return (
         <div className='px-[10%]'>
+            <Helmet>
+                <title>Update Craft & Art</title>
+            </Helmet>
             <div style={cardstyles} className=' p-12 px-5 md:px-20'>
                 <h1 className='text-center text-[#374151] sadobl'>Update Craft Item </h1>
 
@@ -138,11 +141,11 @@ const Update = () => {
                         <h2 className='mb-2 font-semibold'>Item Photo</h2>
                         <input style={fildinput} defaultValue={photo} required className='w-full p-2 outline-none' type="text" placeholder='Enter photo URL' name='photo' />
                     </div>
-                    <div>
+                    <div className='hidden'>
                         <h2 className='mb-2 font-semibold'>User Name</h2>
                         <input style={fildinput} readOnly className='w-full p-2 outline-none' type="text" value={user.displayName} />
                     </div>
-                    <div>
+                    <div className='hidden'>
                         <h2 className='mb-2 font-semibold'>User Email</h2>
                         <input style={fildinput} readOnly className='w-full p-2 outline-none' type="text" value={user.email} />
                     </div>

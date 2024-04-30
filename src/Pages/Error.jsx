@@ -1,14 +1,33 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { useEffect, useState } from 'react';
 
 const Error = () => {
+
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? '#eeeeee' : '#ffffff22',
+    };
+
+    const fildinput = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+    
     return (
         <div>
             <Helmet>
                 <title>Page Not Found</title>
             </Helmet>
-            <div className="flex flex-col justify-center items-center">
+            <div className={`flex flex-col justify-center items-center h-f`}>
                 <Player
                     autoplay
                     loop

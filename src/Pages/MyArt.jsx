@@ -3,13 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 const MyArt = () => {
     const [data, setdata] = useState([]);
     
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${user.email}`)
+        fetch(`https://server-jute-wooden.vercel.app/product/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setdata(data)
@@ -28,7 +29,7 @@ const MyArt = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete/${id}`, {
+                fetch(`https://server-jute-wooden.vercel.app/delete/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -36,7 +37,7 @@ const MyArt = () => {
                         if (datarespons.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your Item has been deleted.",
                                 icon: "success"
                             });
 
@@ -55,13 +56,13 @@ const MyArt = () => {
     const customizehandle = (e) =>{
         const ans = e.target.value;
         if(ans == "Customizable: Yes"){
-            fetch(`http://localhost:5000/filter?email=${user.email}&customizable=Yes`)
+            fetch(`https://server-jute-wooden.vercel.app/filter?email=${user.email}&customizable=Yes`)
             .then(res => res.json())
             .then(datas => {
                 setdata(datas);
             })
         }else if(ans == "Customizable: No"){
-            fetch(`http://localhost:5000/filter?email=${user.email}&customizable=No`)
+            fetch(`https://server-jute-wooden.vercel.app/filter?email=${user.email}&customizable=No`)
             .then(res => res.json())
             .then(datas => {
                 setdata(datas);
@@ -96,6 +97,9 @@ const MyArt = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>My Craft & Art</title>
+            </Helmet>
             <div className='mt-14'>
                 <div className='items-center flex flex-col'>
                     <h1 className='text-center mb-5'>My Art & Craft List</h1>
@@ -131,7 +135,7 @@ const MyArt = () => {
                                 </div>
 
                                 <div>
-                                    <p>Processing time: {item.processing_time}</p>
+                                   
                                     <p>Customizable: {item.customizable}</p>
                                 </div>
                                 <p className='text-black h-full text-xl font-semibold mb-2'>{item.price}</p>

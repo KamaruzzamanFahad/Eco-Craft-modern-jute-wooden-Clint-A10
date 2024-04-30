@@ -8,10 +8,11 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { updateProfile } from 'firebase/auth';
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Register = () => {
 
-    const { CreateUserByEmail, UpdateInfo } = useContext(AuthContext);
+    const { CreateUserByEmail, UpdateInfo,setuser } = useContext(AuthContext);
     const goto = useNavigate();
 
 
@@ -31,6 +32,7 @@ const Register = () => {
                     UpdateInfo(Name, photoURL)
                         .then(() => {
                             toast.success("LOGIN SUCCESSFUL")
+                            setuser({ displayName: Name, photoURL: photoURL })
                             console.log('log done ')
                             goto('/');
                         })
@@ -43,7 +45,13 @@ const Register = () => {
                     console.log(error)
                 })
         } else {
-            alert("passwords at least 8 characters long and contain a mix of uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*). Avoid using easily guessable information like your name, birthday, or common phrases!");
+            Swal.fire({
+                title: 'Use a Strong Password!',
+                text: 'passwords at least 8 characters long and contain a mix of uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special characters (!@#$%^&*). Avoid using easily guessable information like your name, birthday, or common phrases!',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            })
+           
         }
 
     }
@@ -51,7 +59,7 @@ const Register = () => {
     const [type, settype] = useState('password')
 
 
-    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    const [theme, settheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : "light")
     window.addEventListener('click', function (event) {
         if (event.target.classList[0] == "toggle") {
             const theme = localStorage.getItem('theme')
@@ -92,20 +100,20 @@ const Register = () => {
                                     <label className="label">
                                         <span style={lable} className="label-text">Name</span>
                                     </label>
-                                    <input  style={fildinput} name='Name' type="text" placeholder="Name" className="input input-bordered" required />
+                                    <input style={fildinput} name='Name' type="text" placeholder="Name" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span style={lable} className="label-text">Email</span>
                                     </label>
-                                    <input  style={fildinput} name='email' type="email" placeholder="email" className="input input-bordered" required />
+                                    <input style={fildinput} name='email' type="email" placeholder="email" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span style={lable} className="label-text">photoURL</span>
                                     </label>
-                                    <input  style={fildinput} name='photoURL' type="url" placeholder="photoURL" className="input input-bordered" required />
+                                    <input style={fildinput} name='photoURL' type="url" placeholder="photoURL" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">

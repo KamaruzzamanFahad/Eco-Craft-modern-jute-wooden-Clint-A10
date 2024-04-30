@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import Rating from 'react-rating';
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 const ViewDetils = () => {
     const data = useLoaderData();
     const { _id,
@@ -37,6 +38,9 @@ const ViewDetils = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>View Detils</title>
+            </Helmet>
             <div className="flex flex-col md:flex-row gap-10 p-5 pb-10">
                 <div className="w-[100%] md:w-[50%]">
                     <img src={photo} alt="" className="w-full" />
