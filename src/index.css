@@ -34,7 +34,27 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+.light {
+  color: rgb(30, 30, 30);
+  background-color: white;
+}
 
+.dark {
+  color: rgb(226, 226, 226);
+  background-color: rgb(30, 30, 30);
+}
+
+.active li {
+  background-color: rgba(178, 178, 178, 0.646);
+
+}
+.sadobl{
+  text-shadow: 2px 2px 5px #000000;
+}
+.darekcard{
+  background-color: #ffffff22;
+  color: rgb(240, 240, 240);
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;

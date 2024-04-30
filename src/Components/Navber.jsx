@@ -16,24 +16,33 @@ const Navber = () => {
         <NavLink activeclassname="active" to={'/myart'}><li>My Art & Craft List</li></NavLink>
     </>
 
-    const [ischack, setcheck] = useState(true)
+    
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    const [ischack, setcheck] = useState((theme == "light")? true : false)
 
 
     const darklighandle = (e) => {
         if (ischack) {
             setcheck(false)
-
+            localStorage.setItem("theme","dark")
+            settheme("dark")
         }
         else {
             setcheck(true)
+            localStorage.setItem("theme","light")
+            settheme("light")
         }
         console.log(ischack)
     }
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? '#eeeeee' : '#ffffff22',
+    };
 
     const { user, LogOut } = useContext(AuthContext)
     return (
         <div className='py-5'>
-            <div className="navbar bg-base-100">
+            <div className="navbar ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,7 +63,7 @@ const Navber = () => {
 
                     <div className="form-control mr-2">
                         <label className="label cursor-pointer">
-                            <input onChange={darklighandle} type="checkbox" className="toggle" />
+                            <input checked={!ischack} onChange={darklighandle} type="checkbox" className="toggle" />
                         </label>
                     </div>
                     {
@@ -65,7 +74,7 @@ const Navber = () => {
                                     <img alt="user" src={user.photoURL} />
                                 </div>
                                 </div>
-                                <ul tabIndex={0} className="mt-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#ececec] rounded-box w-52">
+                                <ul style={cardstyles} tabIndex={0} className="mt-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#ececec] rounded-box w-52">
                                     <li><a>{user.displayName}</a></li>
                                     <li><a onClick={LogOut}>Logout</a></li>
                                 </ul>

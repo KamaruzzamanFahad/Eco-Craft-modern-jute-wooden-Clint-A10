@@ -16,6 +16,18 @@ const AllArt = () => {
             })
     }, [])
 
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+
+    const thcolor = {
+        color: (theme == "light") ? 'black' : 'white',
+    };
+
 
     return (
         <div>
@@ -25,17 +37,17 @@ const AllArt = () => {
                     <p className='px-[10%] text-center mb-10'>Welcome to our All Art & craft Items section, your one-stop shop for all things handmade magic! Whether you're a seasoned crafter or just starting your creative journey, we have something to inspire you.</p>
                 </div>
 
-                <div className="overflow-x-auto mb-20">
+                <div className="overflow-x-auto pb-20">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
+                            <tr className={`${theme}`}>
                                 <th></th>
-                                <th className='font-bold text-black text-md'>Name</th>
-                                <th className='font-bold text-black text-md hidden sm:flex '>Subcategory</th>
-                                <th className='font-bold text-black text-md'>Price</th>
-                                <th className='font-bold text-black text-md'>Rating</th>
-                                <th className='font-bold text-black text-md'>Details</th>
+                                <th style={thcolor} className='font-bold  text-md'>Name</th>
+                                <th style={thcolor} className='font-bold  text-md hidden sm:flex '>Subcategory</th>
+                                <th style={thcolor} className='font-bold  text-md'>Price</th>
+                                <th style={thcolor} className='font-bold  text-md'>Rating</th>
+                                <th style={thcolor} className='font-bold  text-md'>Details</th>
                             </tr>
                         </thead>
                         <tbody>

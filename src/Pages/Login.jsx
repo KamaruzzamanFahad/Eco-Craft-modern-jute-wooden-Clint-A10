@@ -14,10 +14,10 @@ const Login = () => {
         setlooding,
         LoginByEmail,
         LiginByGoogle,
-        LiginByGithub, 
+        LiginByGithub,
     } = useContext(AuthContext)
 
-    const loginsucces = () =>{
+    const loginsucces = () => {
         toast.success("LOGIN SUCCESSFUL");
         goto('/');
     }
@@ -50,6 +50,28 @@ const Login = () => {
     }
     const [type, settype] = useState('password')
 
+
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
+    const fildinput = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
+    const lable = {
+        color: (theme == "light") ? 'black' : 'white',
+    };
+
     return (
 
         <div className="animate__backInDown">
@@ -58,24 +80,24 @@ const Login = () => {
             </Helmet>
 
             <div>
-                <div className="hero mb-10">
+                <div className="hero pb-10">
                     <div className="hero-content flex-col lg:flex-row-reverse">
 
-                        <div className="card shrink-0 max-w-sm shadow-2xl bg-base-100 p-10 w-80 sm:w-96 ">
+                        <div style={cardstyles} className="card shrink-0 max-w-sm shadow-2xl p-10 w-80 sm:w-96 ">
                             <h1 className='text-3xl mb-2 font-semibold'>Login your account</h1>
-                            <form onSubmit={loginhandle} className="card-body mb-2 p-0">
+                            <form  onSubmit={loginhandle} className="card-body mb-2 p-0">
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Email</span>
+                                        <span style={lable} className="label-text">Email</span>
                                     </label>
-                                    <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                                    <input style={fildinput} name='email' type="email" placeholder="email" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Password</span>
+                                        <span style={lable} className="label-text">Password</span>
                                     </label>
 
-                                    <div className='flex items-center input input-bordered'>
+                                    <div style={fildinput} className='flex items-center input input-bordered'>
                                         <input name='password' type={type} placeholder="password" className="w-full" required />
                                         {
                                             type == "password" ? <FaEyeSlash onClick={() => settype("text")} /> : <FaEye onClick={() => settype("password")} />
@@ -84,7 +106,7 @@ const Login = () => {
                                     </div>
 
                                     <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                        <a style={lable} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
                                 </div>
                                 <div className="form-control mt-1">
@@ -99,11 +121,11 @@ const Login = () => {
                                 <hr className="border-[1px] border-[#0000001b] w-full" />
                             </div>
 
-                            <div onClick={goglelogin} className="flex justify-center gap-6 items-center border-[1px] border-solid border-[#00000043] rounded-lg btn">
+                            <div style={fildinput} onClick={goglelogin} className="flex justify-center gap-6 items-center border-[1px] border-solid border-[#00000043] rounded-lg btn">
                                 <img width={'10%'} src="gogle.png" alt="" />
                                 <p>Login with Google</p>
                             </div>
-                            <div onClick={gitlogin} className="flex justify-center gap-6 items-center border-[1px] mt-4 border-solid border-[#00000043] rounded-lg btn">
+                            <div style={fildinput} onClick={gitlogin} className="flex justify-center gap-6 items-center border-[1px] mt-4 border-solid border-[#00000043] rounded-lg btn">
                                 <img width={'10%'} src="github.png" alt="" />
                                 <p>Login with Github</p>
                             </div>

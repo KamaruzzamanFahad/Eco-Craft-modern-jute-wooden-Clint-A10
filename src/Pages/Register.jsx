@@ -11,7 +11,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
 
-    const { CreateUserByEmail,UpdateInfo} = useContext(AuthContext);
+    const { CreateUserByEmail, UpdateInfo } = useContext(AuthContext);
     const goto = useNavigate();
 
 
@@ -28,7 +28,7 @@ const Register = () => {
                     toast.success("Registration done, prifile updating please wait");
                     console.log('regi done ')
 
-                    UpdateInfo(Name,photoURL)
+                    UpdateInfo(Name, photoURL)
                         .then(() => {
                             toast.success("LOGIN SUCCESSFUL")
                             console.log('log done ')
@@ -48,7 +48,29 @@ const Register = () => {
 
     }
 
-    const [type,settype] = useState('password')
+    const [type, settype] = useState('password')
+
+
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
+    const fildinput = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
+    const lable = {
+        color: (theme == "light") ? 'black' : 'white',
+    };
 
 
 
@@ -58,42 +80,42 @@ const Register = () => {
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            
+
             <div>
-                <div className="hero mb-10">
+                <div className="hero pb-10">
                     <div className="hero-content flex-col lg:flex-row-reverse">
 
-                        <div className="card shrink-0 max-w-sm shadow-2xl bg-base-100 p-10  w-80 sm:w-96">
+                        <div style={cardstyles} className="card shrink-0 max-w-sm shadow-2xl  p-10  w-80 sm:w-96">
                             <h1 className='text-3xl mb-2 font-semibold'>Register New account</h1>
                             <form onSubmit={reginhandle} className="card-body mb-2 p-0">
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Name</span>
+                                        <span style={lable} className="label-text">Name</span>
                                     </label>
-                                    <input name='Name' type="text" placeholder="Name" className="input input-bordered" required />
+                                    <input  style={fildinput} name='Name' type="text" placeholder="Name" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Email</span>
+                                        <span style={lable} className="label-text">Email</span>
                                     </label>
-                                    <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                                    <input  style={fildinput} name='email' type="email" placeholder="email" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">photoURL</span>
+                                        <span style={lable} className="label-text">photoURL</span>
                                     </label>
-                                    <input name='photoURL' type="url" placeholder="photoURL" className="input input-bordered" required />
+                                    <input  style={fildinput} name='photoURL' type="url" placeholder="photoURL" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Password</span>
+                                        <span style={lable} className="label-text">Password</span>
                                     </label>
-                                    <div className='flex items-center input input-bordered'>
+                                    <div style={fildinput} className='flex items-center input input-bordered'>
                                         <input name='password' type={type} placeholder="password" className="w-full" required />
-                                       {
-                                        type == "password" ? <FaEyeSlash onClick={()=> settype("text")} /> : <FaEye onClick={()=> settype("password")} />
-                                       }  
+                                        {
+                                            type == "password" ? <FaEyeSlash onClick={() => settype("text")} /> : <FaEye onClick={() => settype("password")} />
+                                        }
 
                                     </div>
                                 </div>

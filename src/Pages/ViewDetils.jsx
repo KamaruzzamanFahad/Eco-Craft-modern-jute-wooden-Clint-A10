@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Rating from 'react-rating';
+import { useEffect, useState } from "react";
 const ViewDetils = () => {
     const data = useLoaderData();
     const { _id,
@@ -14,6 +15,25 @@ const ViewDetils = () => {
         stockStatus,
         username,
         email } = data[0];
+
+
+    const [theme, settheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? '#eeeeee' : '#ffffff22',
+    };
+
+    const fildinput = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
 
     return (
         <div>
@@ -45,7 +65,7 @@ const ViewDetils = () => {
                     <p>{detils}</p>
 
                     <div className="flex items-center mt-2">
-                        <input className="w-14 p-2 border-[1px] border-[#e3e3e3] mr-4" type="number" name="" defaultValue={1} id="" />
+                        <input style={fildinput} className="w-14 p-2 border-[1px] border-[#e3e3e3] mr-4" type="number" name="" defaultValue={1} id="" />
                         <button className="rounded-full text-white bg-black w-full mr-2 md:mr-10">Request For Buy</button>
                     </div>
                 </div>

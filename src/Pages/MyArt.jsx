@@ -16,8 +16,6 @@ const MyArt = () => {
             })
     }, [])
 
-    const [filter, setfilter] = useState(data);
-
 
     const deletehandle = (id) => {
         Swal.fire({
@@ -54,28 +52,68 @@ const MyArt = () => {
         });
     }
 
+    const customizehandle = (e) =>{
+        const ans = e.target.value;
+        if(ans == "Customizable: Yes"){
+            fetch(`http://localhost:5000/filter?email=${user.email}&customizable=Yes`)
+            .then(res => res.json())
+            .then(datas => {
+                setdata(datas);
+            })
+        }else if(ans == "Customizable: No"){
+            fetch(`http://localhost:5000/filter?email=${user.email}&customizable=No`)
+            .then(res => res.json())
+            .then(datas => {
+                setdata(datas);
+            })
+        }
+        
+    }
+
+    const [theme, settheme] = useState(localStorage.getItem('theme')? localStorage.getItem('theme') : "light")
+    window.addEventListener('click', function (event) {
+        if (event.target.classList[0] == "toggle") {
+            const theme = localStorage.getItem('theme')
+            settheme(theme)
+        }
+    });
+    const cardstyles = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? '#F4F3F0' : '#ffffff22',
+    };
+
+    const fildinput = {
+        color: (theme == "light") ? 'black' : 'rgb(240, 240, 240)',
+        'background-color': (theme == "light") ? 'white' : '#ffffff22',
+    };
+
+    const option = {
+        color: (theme == "light") ? 'black' : 'white',
+        'background-color': (theme == "light") ? 'white' : 'black',
+    };
+
 
 
     return (
         <div>
             <div className='mt-14'>
-                <div>
+                <div className='items-center flex flex-col'>
                     <h1 className='text-center mb-5'>My Art & Craft List</h1>
 
-                    <div className='flex items-center justify-center mt-3 mb-4'>
-                        <p className='bg-[#eeeeee] p-4 rounded-lg'>Filter By Customization</p>
-                        <select  required name='subcategory_Name' className="select p-2 outline-none">
-                            <option disabled selected>Chose An Option </option>
-                            <option>Customizable Yes</option>
-                            <option>Customizable No</option>
+                    <div style={cardstyles} className='flex items-center justify-center mt-3 w-fit mb-4'>
+                        <p  className=' p-4 rounded-lg'>Filter By Customization</p>
+                        <select style={cardstyles} onChange={customizehandle}  required name='subcategory_Name' className="select  outline-none">
+                            <option style={option} disabled selected>Chose An Option </option>
+                            <option style={option}>Customizable: Yes</option>
+                            <option style={option}>Customizable: No</option>
                         </select>
                     </div>
                 </div>
 
-                <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                <div className='grid gap-5 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-20'>
                     {
                         data.map((item, i) => (
-                            <div key={i} className='bg-[#eeeeee] flex flex-col h-auto p-4 pb-6 rounded-lg animate__bounceIn'>
+                            <div style={cardstyles}  key={i} className=' flex flex-col h-auto p-4 pb-6 rounded-lg animate__bounceIn'>
                                 <div>
                                     <img src={item.photo} width={'100%'} alt="" className="rounded-xl h-[200px]" />
                                 </div>
