@@ -1,5 +1,6 @@
-****Eco-Craft: Jute & Wooden Crafts (Art & Craft Store)**
+****Eco-Craft:**
 **Live Site: https://modern-jute-wooden.web.app/**
+*Jute & Wooden Crafts (Art & Craft Store)*
 
 Welcome to Eco-Craft, your one-stop shop for beautiful and sustainable jute and wooden crafts! We are passionate about promoting eco-friendly art forms while offering unique and handcrafted pieces for your home or as gifts.
 
